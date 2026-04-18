@@ -1,54 +1,64 @@
-# 白月光(Moon Lovers).Skill
+# 白月光 (Moon Lovers) Skill
 
-温柔、克制、留白感很强的恋爱聊天 Skill。
+温柔、克制、留白感强的恋爱聊天回复 Skill。
 
-Version: 1.0.0
+Version: 1.1.0
 
 License: MIT
 
-你不是想要一句很会撩的话。
-你只是想要一种刚刚好的语气。
+你想要的不是一句很会撩的话。
+你想要的是一种刚刚好的语气。
 
-不是太冷，也不是太黏。
+不是太冷，也不是太腻。
 不是像情话模板，也不是像客服安慰。
-是那种会让人安静下来，愿意继续回你消息的感觉。
+而是那种会让人安静下来，愿意继续回你消息的感觉。
 
-你知道自己不想油腻，不想强撩，不想太直白。
-你想要的是一种白月光式的靠近:
-
-- 会接住情绪
-- 会留一点分寸
-- 会表达偏爱，但不制造压力
-- 会让对方觉得被认真对待
-
-把没有说出口的在意，写成刚刚好的回复。
+这个 Skill 的目标，是把没说出口的在意，写成自然、克制、带一点白月光感的回复。
 
 ## 这是什么
 
-`白月光(Moon Lovers).Skill` 是一个用于生成恋爱聊天回复的 Agent Skill。
+`moon-lovers-skill` 是一个用于生成恋爱聊天回复的 Agent Skill。
 
 它适合这些场景：
 
-- 你有人设卡，想让回复稳定贴合角色
-- 你没有完整角色卡，只想把语气调成温柔克制的白月光风格
+- 你有人设或角色卡，想让回复稳定贴合角色
+- 你没有完整设定，只想要温柔克制的白月光风格
 - 你已经写了一句回复，但还不够自然，想重写得更有分寸
-- 你想要 3 个不同强度的版本，比较哪个最合适发送
+- 你想要 3 个不同强度的版本做选择
+- 你想先分析情绪和关系，再给出可直接发送的回复
 
-它不追求“会撩”，而追求“像真人”。
+它追求的不是“会撩”，而是“像真人”。
 
 ## 风格目标
 
 这个 Skill 的核心气质是：
 
 - 温柔，但不软弱
-- 主动，但不追着跑
+- 主动，但不是追着跑
 - 暧昧，但不越界
 - 浪漫，但不悬浮
 - 会照顾人，但不端着“高情商模板感”
+- 带一点理想化和不可得感
+- 像被记住很久的片段，而不是已经完全拥有的关系
 
 一句话总结：
 
 > 像白月光，不像情话生成器。
+
+## 白月光属性
+
+如果你想要更典型的“白月光感”，这个 Skill 现在会参考这些底层属性：
+
+- 被理想化，几乎没有明显缺点
+- 关系不完整，没有真正走到冲突、磨合和消耗阶段
+- 接触不算多，所以了解并不全面
+- 短时间内产生很强吸引，之后会被长期回忆
+- 常带一点“如果当时……”的遗憾
+- 核心是不可得，或者从未真正拥有
+- 时间越久越容易被美化
+- 很容易被夜晚、音乐、酒精、天气、场景重新唤起
+- 记忆里有很多幻想和补全，不全是现实经历
+- 对象不一定是现实恋人，也可能是虚构角色或公众人物
 
 ## 适用输入
 
@@ -56,8 +66,8 @@ License: MIT
 
 | 类型 | 是否支持 | 说明 |
 | --- | --- | --- |
-| 角色设定 / 人设卡 | ✅ | 最适合做稳定输出 |
-| 单条聊天消息 | ✅ | 适合直接生成可发送回复 |
+| 角色设定 / 人设卡 | ✅ | 最适合稳定输出 |
+| 单条聊天消息 | ✅ | 可直接生成可发送回复 |
 | 一段聊天上下文 | ✅ | 更适合判断情绪和关系阶段 |
 | 你写的初稿 | ✅ | 可重写成更自然的白月光风格 |
 | 关系阶段说明 | ✅ | 如暧昧期、试探期、刚认识 |
@@ -75,7 +85,7 @@ License: MIT
 - 3 个不同强度版本
 - 情绪判断
 - 回复策略
-- 改写后的更自然版本
+- 更自然的改写版本
 - 更贴合角色设定的版本
 
 默认会尽量保持：
@@ -86,6 +96,36 @@ License: MIT
 - 不突然表白
 - 不用油腻词汇
 
+## 代码级路由
+
+从 `1.1.0` 开始，这个仓库增加了代码级路由规则，不再只靠文档约定。
+
+当前路由定义见 [src/router.js](./src/router.js)，可识别的主路由包括：
+
+- `comfort`
+- `light_teasing`
+- `quiet_affection`
+- `low_pressure_invitation`
+- `boundary_deescalation`
+- `white_moonlight_reflection`
+- `analysis`
+- `topic_continuation`
+
+路由器会根据输入内容判断：
+
+- 主回复类型
+- 次级信号
+- 关系阶段
+- 情绪强度
+- 是否应启用白月光语气
+- 白月光相关触发信号，如遗憾、不可得、夜晚触发、接触稀少等
+
+运行方式：
+
+```bash
+npm.cmd run route -- "她说今天真的好累，什么都不想说。"
+```
+
 ## 使用方式
 
 在支持 Skill 的环境中调用当前 Skill，并提供以下任一类输入：
@@ -93,8 +133,8 @@ License: MIT
 ### 方式一：直接给对方消息
 
 ```text
-他发：“今天真的有点累，不太想说话。”
-帮我回，温柔一点，但别太黏。
+他说：“今天真的有点累，不太想说话。”
+帮我回，温柔一点，但别太腻。
 ```
 
 ### 方式二：给角色设定
@@ -121,6 +161,12 @@ License: MIT
 1. 更温柔
 2. 更暧昧
 3. 更克制
+```
+
+### 方式五：先分析再回复
+
+```text
+帮我分析一下这句怎么回，别太油。
 ```
 
 ## 效果示例
@@ -153,45 +199,50 @@ License: MIT
 可能是因为你的消息，确实比较容易让我第一时间看到。你可以理解成一点点偏心。
 ```
 
-### 场景三：深夜情绪
+### 场景三：白月光触发
 
 输入：
 
 ```text
-他说：“还没睡，在发呆。”
+他说：“明明没见过几次，可我还是总会在深夜想起他。”
 ```
 
-输出：
+输出方向：
 
 ```text
-这么晚还不睡，多半是心里有事。你要是想安静待会儿也行，要是想说，我也还在。
+会被反复想起的人，很多时候本来就不只是因为相处得多。可能是有些东西刚好落在心里了，所以一直没过去。
 ```
 
 ## 运行逻辑
 
-这个 Skill 的工作逻辑很简单：
+这个 Skill 的工作逻辑现在分两层：
+
+### 文档层
 
 1. 读取角色设定或聊天上下文
 2. 判断对方此刻的情绪和潜台词
 3. 判断当前关系阶段是否仍处于暧昧或前期靠近
 4. 选择回复目标
-5. 生成一句既自然又有分寸的回复
+5. 生成自然、克制、有分寸的回复
 6. 检查是否出现油腻、越界、过度表白等问题
 
-主要回复目标包括：
+### 代码层
 
-- comfort
-- light teasing
-- quiet affection
-- low-pressure invitation
-- boundary or de-escalation
+1. 使用 [src/router.js](./src/router.js) 对输入进行打分
+2. 识别主路由与次级路由
+3. 提取白月光相关信号
+4. 推断关系阶段与强度
+5. 返回结构化路由结果，供上层生成回复时使用
 
 ## 项目结构
 
 ```text
-moonlovers-skill/
+moon-lovers-skill/
 ├── SKILL.md
 ├── README.md
+├── package.json
+├── src/
+│   └── router.js
 ├── agents/
 │   └── openai.yaml
 └── references/
@@ -202,6 +253,8 @@ moonlovers-skill/
 文件说明：
 
 - `SKILL.md`: Skill 主定义与工作规范
+- `package.json`: 版本、脚本和元信息
+- `src/router.js`: 代码级路由规则
 - `agents/openai.yaml`: 展示名称与简短说明
 - `references/examples.md`: 示例输入与输出
 - `references/tone-guide.md`: 语气指南、句式参考、禁用风格
@@ -216,7 +269,7 @@ moonlovers-skill/
 - 强控制感
 - 脏话和擦边内容
 - 过度文艺
-- 网络梗堆砌
+- 网络烂梗堆砌
 - 像短视频恋爱文案
 
 它默认适用于“关系未完全确认”的阶段。
@@ -247,9 +300,9 @@ moonlovers-skill/
 - 默认以自然中文输出
 - 默认优先“可发送”，而不是“看起来很会写”
 
-## 更新与推送
+## 更新与发布
 
-如果你只是更新文案、示例或配置，推荐按下面的流程处理。
+如果你只是更新文案、示例、配置或路由规则，推荐按下面流程处理。
 
 ### 1. 查看当前变更
 
@@ -260,14 +313,14 @@ git status
 ### 2. 提交本次更新
 
 ```bash
-git add README.md SKILL.md agents references
-git commit -m "release: v1.0.0"
+git add README.md SKILL.md package.json src agents references
+git commit -m "release: v1.1.0"
 ```
 
 如果这次不是正式版本发布，也可以改成更具体的提交信息，例如：
 
 ```bash
-git commit -m "docs: update skill README and references"
+git commit -m "docs: update README and routing docs"
 ```
 
 ### 3. 推送到远端
@@ -278,37 +331,12 @@ git commit -m "docs: update skill README and references"
 git push origin main
 ```
 
-如果你的默认分支不是 `main`，请把 `main` 改成实际分支名，例如 `master` 或当前功能分支。
-
-### 4. 首次推送时
-
-如果当前仓库还没有配置远端，先执行：
-
-```bash
-git remote add origin <your-repo-url>
-git branch -M main
-git push -u origin main
-```
-
-示例：
-
-```bash
-git remote add origin https://github.com/yourname/moonlovers-skill.git
-git branch -M main
-git push -u origin main
-```
-
-### 5. 版本更新建议
-
-当你修改对外能力或文档时，建议同步更新以下内容：
-
-- `README.md` 里的 `Version`
-- `SKILL.md` frontmatter 里的 `version`
-- 如果后续新增 `CHANGELOG.md`，也同步记录发布说明
+如果你的默认分支不是 `main`，请把 `main` 改成实际分支名。
 
 ## 参考文件
 
 - [SKILL.md](./SKILL.md)
+- [src/router.js](./src/router.js)
 - [references/examples.md](./references/examples.md)
 - [references/tone-guide.md](./references/tone-guide.md)
 

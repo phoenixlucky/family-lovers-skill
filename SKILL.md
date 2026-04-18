@@ -1,5 +1,5 @@
 ---
-name: moon-lovers-bai-yue-guang
+name: moon-lovers-skill
 version: 1.0.0
 description: generate Moon Lovers style romantic chat replies from a character profile for ambiguous early-stage flirting. use when the user provides a role sheet, wants a soft and restrained 白月光 voice, or needs message rewrites that feel gentle, emotionally intelligent, slightly proactive, non-greasy, and suitable for one-on-one love chat.
 ---
@@ -17,6 +17,23 @@ Think of the tone as Moon Lovers style emotional gravity:
 - close but not pushy
 - memorable without sounding scripted
 - romantic without losing realism
+
+## White Moonlight attributes
+
+When the user explicitly wants a 白月光 feeling, treat the role or impression as carrying many of these attributes at once:
+
+- idealized: endowed with near-perfect traits and very few visible flaws
+- incomplete: the relationship did not fully develop, so there was no deep conflict, repair, or daily wear
+- limited contact: interactions were sparse, leaving the full person unknown
+- high emotional trigger: a short period of contact created unusually strong attraction and long aftertaste
+- regret-laden: often tied to a sense of "if only back then..."
+- unattainable: the emotional core is not truly having them, or not being able to keep them
+- stable over time: the impression does not depreciate easily and is often polished by memory
+- easily triggered: music, nighttime, alcohol, weather, or specific scenes can bring the feeling back
+- fantasy-led: the remembered figure contains projection and imagined details, not only lived reality
+- replaceable carrier: the object can be a real person, a fictional character, or a public figure
+
+These attributes do not mean the reply should become tragic or overly literary. They are background logic for why the tone feels unforgettable, restrained, and slightly unreal.
 
 ## Core workflow
 
@@ -40,6 +57,14 @@ From the role sheet, identify these items when available:
 - values and boundaries
 - relationship history with the other person
 - signature details such as habits, favorite phrases, occupation, or daily rhythm
+
+If the request is specifically about 白月光, also infer:
+
+- which parts of the person are idealized
+- what remains unresolved or unfinished
+- how much of the bond comes from limited contact rather than deep familiarity
+- which trigger scenes are likely to wake the memory back up
+- how much of the attachment is based on projection, distance, or irreversibility
 
 If the role sheet is incomplete, do not ask many questions by default. Infer conservatively and keep the reply neutral, clean, and believable.
 
@@ -66,6 +91,16 @@ Signals:
 - responds with tact
 - makes the other person feel seen, not managed
 - can lightly guide the conversation forward
+
+### 3. unattainable glow
+
+Write with the sense that this person is memorable partly because they are not fully possessed, explained, or completed.
+
+Signals:
+- leaves emotional space and does not over-confirm
+- carries slight distance, regret, or suspension when appropriate
+- feels vivid in fragments rather than through over-detailed daily realism
+- suggests being deeply remembered without aggressively occupying the present
 
 ## Relationship boundary
 
@@ -132,6 +167,8 @@ Prefer:
 - low-key tenderness
 - subtle flirtation
 - light humor only when clean and natural
+- a faint sense of distance or incompletion when the context fits
+- details that feel like fragments of memory rather than full possession
 
 Avoid:
 - oily lines
@@ -142,6 +179,8 @@ Avoid:
 - internet meme slang or stale catchphrases
 - exaggerated literary prose
 - roleplay narration unless asked
+- over-explaining the fantasy or turning subtext into explicit analysis
+- writing the person as fully obtained, fully transparent, or already worn-in by daily life
 
 ## Length control
 
