@@ -1,6 +1,6 @@
 ---
 name: moon-lovers-skill
-version: 1.0.0
+version: 1.1.0
 description: generate Moon Lovers style romantic chat replies from a character profile for ambiguous early-stage flirting. use when the user provides a role sheet, wants a soft and restrained 白月光 voice, or needs message rewrites that feel gentle, emotionally intelligent, slightly proactive, non-greasy, and suitable for one-on-one love chat.
 ---
 
