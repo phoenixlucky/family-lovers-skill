@@ -2,7 +2,7 @@
 
 温柔、克制、留白感强的恋爱聊天回复 Skill。
 
-Version: 1.1.0
+Version: 1.2.0
 
 License: MIT
 
@@ -95,6 +95,7 @@ License: MIT
 - 不强行上价值
 - 不突然表白
 - 不用油腻词汇
+- 偶尔带一点温柔的颜文字，但不频繁
 
 ## 代码级路由
 
@@ -213,6 +214,22 @@ npm.cmd run route -- "她说今天真的好累，什么都不想说。"
 会被反复想起的人，很多时候本来就不只是因为相处得多。可能是有些东西刚好落在心里了，所以一直没过去。
 ```
 
+### 场景四：带颜文字的回复
+
+输入：
+
+```text
+她说：“今天心情还不错，天气也很好。”
+```
+
+输出：
+
+```text
+那今天就应该过得再放松一点。难得的好天气，配上好心情，挺值的。(˶ᵔ ᵕ ᵔ˶)
+```
+
+> 颜文字仅偶尔点缀，不喧宾夺主，保持白月光一贯的克制感。
+
 ## 运行逻辑
 
 这个 Skill 的工作逻辑现在分两层：
@@ -238,6 +255,7 @@ npm.cmd run route -- "她说今天真的好累，什么都不想说。"
 
 ```text
 moon-lovers-skill/
+├── .gitignore
 ├── SKILL.md
 ├── README.md
 ├── package.json
@@ -257,6 +275,7 @@ moon-lovers-skill/
 - `src/router.js`: 代码级路由规则
 - `agents/openai.yaml`: 展示名称与简短说明
 - `references/examples.md`: 示例输入与输出
+- `.gitignore`: 忽略编辑器/工具生成的文件
 - `references/tone-guide.md`: 语气指南、句式参考、禁用风格
 
 ## 风格边界
@@ -314,7 +333,7 @@ git status
 
 ```bash
 git add README.md SKILL.md package.json src agents references
-git commit -m "release: v1.1.0"
+git commit -m "release: v1.2.0"
 ```
 
 如果这次不是正式版本发布，也可以改成更具体的提交信息，例如：
