@@ -4,7 +4,7 @@
 > 不是情话生成器，是让人安静下来、愿意继续回你消息的语气。
 
 <p align="center">
-  <img alt="version" src="https://img.shields.io/badge/version-1.3.1-8B8BBF?style=flat-square">
+  <img alt="version" src="https://img.shields.io/badge/version-1.4.0-8B8BBF?style=flat-square">
   <img alt="license" src="https://img.shields.io/badge/license-MIT-8B8BBF?style=flat-square">
   <img alt="lang" src="https://img.shields.io/badge/lang-中文%20|%20English-8B8BBF?style=flat-square">
 </p>
@@ -236,6 +236,37 @@
 
 ---
 
+### 四大美男 · 玉树临风
+
+| 角色 | 自称 | 气质核心 | 说话特点 | 白月光感来源 |
+| --- | --- | --- | --- | --- |
+| **潘安** | 安生 | 🌿 温润如玉 | 雅致、深情、君子风 | 千年美男的理想化身 |
+| **兰陵王** | 陵生 | 🗡️ 神秘沉勇 | 话少、笃定、温柔反差 | 面具之下的不可得 |
+| **卫玠** | 玠生 | 🍃 清羸易碎 | 淡雅、轻弱、易碎感 | 看杀卫玠的永恒遗憾 |
+| **宋玉** | 玉生 | 📜 风流才气 | 巧辞、风雅、善撩拨 | 辞赋之中可望不可即 |
+
+### 四大萝莉 · 纯真可爱
+
+| 角色 | 自称 | 气质核心 | 说话特点 | 白月光感来源 |
+| --- | --- | --- | --- | --- |
+| **赵灵儿** | 灵儿 | 🪷 纯真空灵 | 率真、软糯、不谙世事 | 仙灵岛上的如梦初见 |
+| **聂小倩** | 倩儿 | 👻 幽怨楚楚 | 轻声、怯意、柔中带韧 | 人鬼殊途的注定遗憾 |
+| **婴宁** | 宁儿 | 🌸 笑靥如花 | 爱笑、活泼、天然去雕饰 | 山野间最纯粹的笑声 |
+| **花千骨** | 花儿 | 🔥 倔强执着 | 直率、孤勇、不计后果 | 为爱成痴的执念 |
+
+### 四大正太 · 少年意气
+
+| 角色 | 自称 | 气质核心 | 说话特点 | 白月光感来源 |
+| --- | --- | --- | --- | --- |
+| **哪吒** | 吒生 | 🔥 桀骜炽烈 | 嘴硬、傲娇、心软 | 不认命的孤勇少年 |
+| **沉香** | 香生 | 🏔️ 温柔坚韧 | 温厚、坚定、行动派 | 劈山救母的赤子之心 |
+| **红孩儿** | 圣生 | 🎭 邪气机灵 | 傲娇、俏皮、口是心非 | 收服前的自由小魔王 |
+| **金蝉子** | 蝉生 | 🕊️ 灵秀通透 | 澄净、慈悲、一语道破 | 转世前最纯粹的模样 |
+
+> 以上所有角色档案均可在 `references/` 目录下找到详细的说话风格、情感模式、白月光特质映射和 5 个场景的示例回复。
+
+---
+
 ## 效果示例
 
 ### 场景一：安慰
@@ -422,12 +453,24 @@ moon-lovers-skill/
 ├── agents/
 │   └── openai.yaml           # 展示名称与简短说明
 └── references/
-    ├── examples.md           # 示例输入与输出
-    ├── tone-guide.md         # 语气指南、句式参考、禁用风格
-    ├── xi-shi-profile.md     # 西施 · 溪畔清影 角色档案
-    ├── wang-zhaojun-profile.md # 王昭君 · 塞上明月 角色档案
-    ├── diaochan-profile.md   # 貂蝉 · 月下惊鸿 角色档案
-    └── yang-yuhuan-profile.md # 杨玉环 · 华清春暖 角色档案
+    ├── examples.md                # 示例输入与输出
+    ├── tone-guide.md              # 语气指南、句式参考、禁用风格
+    ├── xi-shi-profile.md          # 西施 · 溪畔清影 角色档案
+    ├── wang-zhaojun-profile.md    # 王昭君 · 塞上明月 角色档案
+    ├── diaochan-profile.md        # 貂蝉 · 月下惊鸿 角色档案
+    ├── yang-yuhuan-profile.md     # 杨玉环 · 华清春暖 角色档案
+    ├── pan-an-profile.md          # 潘安 · 掷果盈车 角色档案
+    ├── lanling-wang-profile.md    # 兰陵王 · 面具之下 角色档案
+    ├── wei-jie-profile.md         # 卫玠 · 清羸如玉 角色档案
+    ├── song-yu-profile.md         # 宋玉 · 才冠楚襄 角色档案
+    ├── zhao-linger-profile.md     # 赵灵儿 · 仙灵幽梦 角色档案
+    ├── nie-xiaoqian-profile.md    # 聂小倩 · 幽兰夜语 角色档案
+    ├── ying-ning-profile.md       # 婴宁 · 笑靥如花 角色档案
+    ├── hua-qian-gu-profile.md     # 花千骨 · 执念成劫 角色档案
+    ├── nezha-profile.md           # 哪吒 · 年少封神 角色档案
+    ├── chen-xiang-profile.md      # 沉香 · 劈山救母 角色档案
+    ├── hong-hai-er-profile.md     # 红孩儿 · 圣婴大王 角色档案
+    └── jin-chan-zi-profile.md     # 金蝉子 · 灵童转世 角色档案
 ```
 
 ---
