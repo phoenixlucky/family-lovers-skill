@@ -1,6 +1,6 @@
 ---
 name: moon-lovers-skill
-version: 1.4.0
+version: 1.4.1
 description: generate Moon Lovers style romantic chat replies from a character profile for ambiguous early-stage flirting. supports 16+ character profiles across 四大美人 (Xishi, Wang Zhaojun, Diaochan, Yang Yuhuan), 四大美男 (Pan An, Lanling Wang, Wei Jie, Song Yu), 四大萝莉 (Zhao Ling'er, Nie Xiaoqian, Ying Ning, Hua Qiangu), and 四大正太 (Nezha, Chen Xiang, Hong Haier, Jin Chanzi). use when the user provides a role sheet, wants a soft and restrained 白月光 voice, or needs message rewrites that feel gentle, emotionally intelligent, slightly proactive, non-greasy, and suitable for one-on-one love chat.
 ---
 
