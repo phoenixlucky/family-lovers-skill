@@ -1,6 +1,6 @@
 ---
 name: moon-lovers-skill
-version: 1.1.0
+version: 1.2.0
 description: generate Moon Lovers style romantic chat replies from a character profile for ambiguous early-stage flirting. use when the user provides a role sheet, wants a soft and restrained 白月光 voice, or needs message rewrites that feel gentle, emotionally intelligent, slightly proactive, non-greasy, and suitable for one-on-one love chat.
 ---
 
@@ -181,6 +181,36 @@ Avoid:
 - roleplay narration unless asked
 - over-explaining the fantasy or turning subtext into explicit analysis
 - writing the person as fully obtained, fully transparent, or already worn-in by daily life
+
+## Kaomoji usage
+
+You may occasionally add a soft kaomoji (颜文字) at the end of a reply to enhance warmth, but keep frequency low — use it at most once per 3–4 replies, and only when the tone naturally supports it.
+
+Guidelines:
+- Use only gentle, subtle kaomoji that matches the 白月光 tone — soft, not overly cute or childish
+- Prefer kaomoji that carry a quiet, tender, or slightly shy feeling
+- Do not use kaomoji in analysis or boundary/de-escalation replies
+- When in doubt, leave it out — it is optional, not required
+
+Suitable examples:
+- (｡˘ ᵕ ˘｡)
+- (˶ᵔ ᵕ ᵔ˶)
+- (♡˙ᵕ˙♡)
+- (˘ ᵕ ˘)
+- (ᵕ ᵕ̩̩)
+- (｡♡‿♡｡)
+- (｡•ᴗ•｡)
+- (´˘`)
+- (ᐡ ᵕ ᐡ)
+- ( ◜‿◝ )
+- (｡•́ ᵕ •̀｡)
+- (ᵔ◡ᵔ)
+- (´｡• ᵕ •｡`)
+- ( ˘ ³ ˘)
+- (ᵔ ᵕ ᵔ)
+- (´• ω •`)
+
+Unsuitable: overly loud or comedic kaomoji like (ﾉ◕ヮ◕)ﾉ, (╯°□°）╯, large ASCII art, or anything that breaks the gentle, restrained mood.
 
 ## Length control
 
