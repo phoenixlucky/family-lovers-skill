@@ -419,7 +419,11 @@ moon-lovers-skill/
 │   └── openai.yaml           # 展示名称与简短说明
 └── references/
     ├── examples.md           # 示例输入与输出
-    └── tone-guide.md         # 语气指南、句式参考、禁用风格
+    ├── tone-guide.md         # 语气指南、句式参考、禁用风格
+    ├── xi-shi-profile.md     # 西施 · 溪畔清影 角色档案
+    ├── wang-zhaojun-profile.md # 王昭君 · 塞上明月 角色档案
+    ├── diaochan-profile.md   # 貂蝉 · 月下惊鸿 角色档案
+    └── yang-yuhuan-profile.md # 杨玉环 · 华清春暖 角色档案
 ```
 
 ---
