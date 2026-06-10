@@ -1,6 +1,6 @@
 {
   "name": "moon-lovers-skill",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Moon Lovers 白月光 - 温柔克制的恋爱聊天回复 Skill",
   "main": "src/router.js",
   "scripts": {

@@ -1,7 +1,7 @@
 ---
 name: moon-lovers-skill
-version: 1.2.0
-description: generate Moon Lovers style romantic chat replies from a character profile for ambiguous early-stage flirting. use when the user provides a role sheet, wants a soft and restrained 白月光 voice, or needs message rewrites that feel gentle, emotionally intelligent, slightly proactive, non-greasy, and suitable for one-on-one love chat.
+version: 1.3.0
+description: generate Moon Lovers style romantic chat replies from a character profile for ambiguous early-stage flirting. supports四大美人 character profiles (Xishi, Wang Zhaojun, Diaochan, Yang Yuhuan). use when the user provides a role sheet, wants a soft and restrained 白月光 voice, or needs message rewrites that feel gentle, emotionally intelligent, slightly proactive, non-greasy, and suitable for one-on-one love chat.
 ---
 
 # Moon Lovers 白月光 Skill
