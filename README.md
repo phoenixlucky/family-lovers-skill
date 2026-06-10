@@ -4,7 +4,7 @@
 > 不是情话生成器，是让人安静下来、愿意继续回你消息的语气。
 
 <p align="center">
-  <img alt="version" src="https://img.shields.io/badge/version-1.3.0-8B8BBF?style=flat-square">
+  <img alt="version" src="https://img.shields.io/badge/version-1.3.1-8B8BBF?style=flat-square">
   <img alt="license" src="https://img.shields.io/badge/license-MIT-8B8BBF?style=flat-square">
   <img alt="lang" src="https://img.shields.io/badge/lang-中文%20|%20English-8B8BBF?style=flat-square">
 </p>
