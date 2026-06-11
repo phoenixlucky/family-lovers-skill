@@ -1,204 +1,189 @@
 "use strict";
 
-const ROUTES = {
-  comfort: {
-    description: "Receive distress first, then offer specific care.",
-    outputMode: "reply",
+// ============================================================
+// family-lovers-skill — 原生家庭关怀对话模式路由
+// ============================================================
+
+const MODES = {
+  awareness: {
+    description: "Help the user recognize family-of-origin patterns, emotional triggers, and conditioned beliefs.",
+    outputMode: "reflection",
     length: "medium",
   },
-  light_teasing: {
-    description: "Keep the mood light, playful, and face-saving.",
-    outputMode: "reply",
+  healing: {
+    description: "Validate emotions, offer gentle reframing, and provide self-dialogue exercises.",
+    outputMode: "support",
+    length: "medium",
+  },
+  companionship: {
+    description: "Embody a secure-attachment persona (warm mother / wise father / understanding sister / supporting brother) for safe relational experience.",
+    outputMode: "companion",
+    length: "medium",
+  },
+  action: {
+    description: "Provide practical boundary-setting, communication skills, and self-care exercises.",
+    outputMode: "guidance",
+    length: "medium",
+  },
+  crisis: {
+    description: "User shows signs of psychological crisis — provide hotline info and recommend professional help.",
+    outputMode: "crisis",
     length: "short",
   },
-  quiet_affection: {
-    description: "Mirror warmth and imply specialness without over-confirming.",
-    outputMode: "reply",
-    length: "medium",
-  },
-  low_pressure_invitation: {
-    description: "Move the interaction forward with an easy opt-out.",
-    outputMode: "reply",
-    length: "medium",
-  },
-  boundary_deescalation: {
-    description: "Reduce heat while preserving dignity and connection.",
-    outputMode: "reply",
-    length: "short",
-  },
-  white_moonlight_reflection: {
-    description: "Handle regret, distance, projection, and unforgettable afterglow.",
-    outputMode: "reply",
-    length: "medium",
-  },
-  analysis: {
-    description: "Explain emotional reading, strategy, and a sendable draft.",
-    outputMode: "analysis",
-    length: "medium",
-  },
-  topic_continuation: {
-    description: "Keep the conversation flowing when no stronger signal dominates.",
-    outputMode: "reply",
+  continuation: {
+    description: "Keep the conversation flowing when no strong mode signal is detected.",
+    outputMode: "companion",
     length: "short",
   },
 };
 
-const RULES = [
+const FAMILY_PATTERNS = [
+  { tag: "role_fixation", description: "Fixed family role (good child, scapegoat, mediator, invisible one)", patterns: [/乖孩子/, /好孩子/, /听话/, /替罪羊/, /透明人/, /调解者/, /小大人/] },
+  { tag: "emotional_neglect", description: "Emotions were not seen or responded to", patterns: [/不被看见/, /不被理解/, /没人在意/, /忽略我的感受/, /情感忽视/, /没人在乎/] },
+  { tag: "conditional_love", description: "Love conditional on achievement or behavior", patterns: [/只有.*才/, /有条件/, /优秀才/, /考得好/, /听话才/, /完美主义/, /必须是/] },
+  { tag: "control_enmeshment", description: "Over-control, lack of boundaries, emotional fusion", patterns: [/控制/, /干涉/, /替我做决定/, /不能有自己的想法/, /情感绑架/, /道德绑架/, /为你好/] },
+  { tag: "role_reversal", description: "Child parentified, took care of parents' emotions", patterns: [/照顾父母/, /安慰妈妈/, /父母的情绪/, /我不敢让他们操心/, /我承担了/] },
+  { tag: "generational_trauma", description: "Trauma passed down from previous generations", patterns: [/重复/, /一样的/, /遗传/, /跟我爸一样/, /跟我妈一样/, /代际/] },
+  { tag: "abandonment_fear", description: "Fear of being left, rejected, or abandoned", patterns: [/害怕被抛弃/, /怕被丢下/, /不敢依赖/, /不敢太亲近/, /怕被拒绝/] },
+  { tag: "guilt_obligation", description: "Guilt-driven sense of duty to family", patterns: [/愧疚/, /内疚/, /亏欠/, /欠他们的/, /应该回报/, /不孝/, /不懂事/] },
+  { tag: "enmeshment_trauma", description: "No healthy separation between self and family", patterns: [/分不开/, /剪不断/, /缠在一起/, /没有自己的空间/, /边界模糊/] },
+];
+
+const MODE_RULES = [
   {
-    route: "analysis",
-    weight: 10,
-    patterns: [/分析/, /拆解/, /判断/, /策略/, /为什么/, /怎么回/, /帮我分析/, /给我思路/],
+    mode: "crisis",
+    weight: 15,
+    patterns: [/自杀/, /不想活了/, /活不下去/, /dead/, /kill myself/, /自残/, /伤害自己/, /hurt myself/],
   },
   {
-    route: "comfort",
-    weight: 8,
+    mode: "healing",
+    weight: 10,
     patterns: [
-      /累/,
-      /困/,
-      /难受/,
-      /不舒服/,
-      /头疼/,
-      /发烧/,
-      /烦/,
-      /焦虑/,
-      /委屈/,
-      /失望/,
-      /崩溃/,
-      /心情不好/,
-      /不想说话/,
-      /压力/,
+      /委屈/, /难受/, /难过/, /伤心/, /痛苦/, /心痛/, /失望/, /绝望/,
+      /愤怒/, /生气/, /恨/, /讨厌/, /为什么这样对我/, /不公平/,
+      /哭/, /泪/, /压抑/, /窒息/, /喘不过气/,
     ],
   },
   {
-    route: "boundary_deescalation",
+    mode: "awareness",
+    weight: 9,
+    patterns: [
+      /为什么我会/, /是不是因为/, /跟.*有关/, /有什么影响/, /来自原生家庭/,
+      /模式/, /习得的/, /从小/, /小时候/, /童年/,
+      /觉察/, /发现/, /意识到/, /理解/,
+    ],
+  },
+  {
+    mode: "action",
     weight: 8,
-    patterns: [/别这样/, /冷静/, /算了/, /先这样/, /越界/, /太快/, /别逼/, /压力太大/, /不合适/, /别当真/],
+    patterns: [
+      /怎么/, /如何/, /方法/, /话术/, /技巧/, /练习/,
+      /边界/, /沟通/, /表达/, /拒绝/, /说不/,
+      /应该怎么做/, /有什么建议/, /具体/,
+    ],
   },
   {
-    route: "low_pressure_invitation",
+    mode: "companionship",
     weight: 7,
-    patterns: [/要不要/, /一起/, /见面/, /出来/, /喝咖啡/, /吃饭/, /下次/, /改天/, /有空/, /周末/],
-  },
-  {
-    route: "light_teasing",
-    weight: 6,
-    patterns: [/怎么每次/, /你又/, /嘴硬/, /这么快/, /偷偷/, /是不是故意/, /被我抓到/, /逗我/],
-  },
-  {
-    route: "quiet_affection",
-    weight: 6,
-    patterns: [/想你/, /想见你/, /在意/, /记得/, /偏心/, /特别/, /舍不得/, /好像有点喜欢/, /会想起你/],
+    patterns: [
+      /陪陪我/, /陪我说说话/, /抱抱/, /需要你/, /你在吗/,
+      /温暖母亲/, /智慧父亲/, /理解姐姐/, /支持兄长/,
+      /安慰/, /陪陪/, /好累/, /孤独/, /孤单/,
+    ],
   },
 ];
 
-const WHITE_MOONLIGHT_SIGNALS = [
-  { tag: "idealized", patterns: [/完美/, /几乎没有缺点/, /特别美好/, /像光/] },
-  { tag: "incomplete", patterns: [/如果当时/, /没来得及/, /后来没有/, /错过/] },
-  { tag: "limited_contact", patterns: [/没见几次/, /接触不多/, /不算熟/, /了解不多/] },
-  { tag: "high_trigger", patterns: [/一直想起/, /反复想起/, /忘不掉/, /总会想起/, /总想起/, /经常想起/] },
-  { tag: "unattainable", patterns: [/得不到/, /不能拥有/, /不是我的/, /不可能在一起/] },
-  { tag: "trigger_scene", patterns: [/夜里/, /深夜/, /音乐/, /喝酒/, /下雨/, /某个场景/] },
-  { tag: "fantasy_led", patterns: [/脑补/, /想象出来/, /其实并不了解/, /投射/] },
-];
+function scoreMode(text) {
+  const scores = Object.fromEntries(Object.keys(MODES).map((key) => [key, 0]));
 
-function scoreRoute(text) {
-  const scores = Object.fromEntries(Object.keys(ROUTES).map((key) => [key, 0]));
-
-  for (const rule of RULES) {
+  for (const rule of MODE_RULES) {
     for (const pattern of rule.patterns) {
       if (pattern.test(text)) {
-        scores[rule.route] += rule.weight;
+        scores[rule.mode] += rule.weight;
       }
     }
   }
 
-  if (scores.analysis > 0) {
-    scores.topic_continuation -= 1;
+  if (scores.crisis > 0) {
+    scores.healing -= 1;
   }
 
   return scores;
 }
 
-function detectWhiteMoonlightSignals(text) {
-  return WHITE_MOONLIGHT_SIGNALS
-    .filter((signal) => signal.patterns.some((pattern) => pattern.test(text)))
-    .map((signal) => signal.tag);
+function detectFamilyPatterns(text) {
+  return FAMILY_PATTERNS
+    .filter((pattern) => pattern.patterns.some((re) => re.test(text)))
+    .map((pattern) => pattern.tag);
 }
 
-function inferRelationshipStage(text) {
-  if (/在一起|恋爱|对象|男朋友|女朋友|复合/.test(text)) {
-    return "established_or_post_confession";
-  }
-
-  if (/刚认识|暧昧|试探|还没确认|还不熟/.test(text)) {
-    return "ambiguous_early_stage";
-  }
-
-  return "unspecified";
-}
-
-function inferIntensity(text) {
-  if (/很|特别|非常|一直|反复|忘不掉|崩溃|太|总会|经常/.test(text)) {
+function inferEmotionalIntensity(text) {
+  if (/很|特别|非常|一直|反复|彻底|完全|太|极度|无比|崩溃/.test(text)) {
     return "high";
   }
-
-  if (/有点|还行|偶尔/.test(text)) {
+  if (/有点|还行|偶尔|好像|似乎|可能/.test(text)) {
     return "low";
   }
-
   return "medium";
 }
 
-function selectPrimaryRoute(scores) {
+function inferUserStage(text) {
+  if (/不知道怎么办|好迷茫|无助|不知道该怎么|没方向/.test(text)) {
+    return "confused_seeking";
+  }
+  if (/发现|意识到|觉察|明白了|原来是这样|懂了/.test(text)) {
+    return "insight_emerging";
+  }
+  if (/开始练习|试着做了|尝试|迈出了/.test(text)) {
+    return "in_action";
+  }
+  if (/懂了很多道理|理论|书上说|在书上看到/.test(text)) {
+    return "theory_before_feeling";
+  }
+  return "unspecified";
+}
+
+function selectPrimaryMode(scores) {
   const ranked = Object.entries(scores).sort((a, b) => b[1] - a[1]);
-  const [route, score] = ranked[0];
+  const [mode, score] = ranked[0];
 
   if (score <= 0) {
     return {
-      primaryRoute: "topic_continuation",
-      secondaryRoutes: [],
+      primaryMode: "continuation",
+      secondaryModes: [],
     };
   }
 
-  const secondaryRoutes = ranked
+  const secondaryModes = ranked
     .slice(1)
     .filter(([, value]) => value > 0)
     .slice(0, 2)
     .map(([key]) => key);
 
   return {
-    primaryRoute: route,
-    secondaryRoutes,
+    primaryMode: mode,
+    secondaryModes,
   };
 }
 
 function routeInput(input) {
   const text = String(input || "").trim();
-  const scores = scoreRoute(text);
-  const whiteMoonlightSignals = detectWhiteMoonlightSignals(text);
-  const relationshipStage = inferRelationshipStage(text);
-  const intensity = inferIntensity(text);
-  const whiteMoonlightWeighted =
-    whiteMoonlightSignals.length >= 2 ||
-    (whiteMoonlightSignals.includes("incomplete") && whiteMoonlightSignals.includes("high_trigger")) ||
-    (whiteMoonlightSignals.includes("limited_contact") && whiteMoonlightSignals.includes("trigger_scene")) ||
-    (whiteMoonlightSignals.includes("unattainable") && whiteMoonlightSignals.includes("trigger_scene"));
+  const scores = scoreMode(text);
+  const familyPatterns = detectFamilyPatterns(text);
+  const emotionalIntensity = inferEmotionalIntensity(text);
+  const userStage = inferUserStage(text);
 
-  if (whiteMoonlightWeighted) {
-    scores.white_moonlight_reflection += 9;
-  }
-
-  const { primaryRoute, secondaryRoutes } = selectPrimaryRoute(scores);
+  const { primaryMode, secondaryModes } = selectPrimaryMode(scores);
 
   return {
     input: text,
-    primaryRoute,
-    secondaryRoutes,
-    routeConfig: ROUTES[primaryRoute],
-    relationshipStage,
-    intensity,
-    whiteMoonlightSignals,
-    shouldUseWhiteMoonlightTone: whiteMoonlightSignals.length > 0,
+    primaryMode,
+    secondaryModes,
+    modeConfig: MODES[primaryMode],
+    emotionalIntensity,
+    userStage,
+    detectedFamilyPatterns: familyPatterns,
+    hasCrisisSignal: scores.crisis > 0,
     scores,
   };
 }
@@ -238,8 +223,8 @@ if (require.main === module) {
 }
 
 module.exports = {
-  ROUTES,
-  RULES,
-  WHITE_MOONLIGHT_SIGNALS,
+  MODES,
+  MODE_RULES,
+  FAMILY_PATTERNS,
   routeInput,
 };
