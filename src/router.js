@@ -4,6 +4,30 @@
 // family-lovers-skill — 原生家庭关怀对话模式路由
 // ============================================================
 
+const FAMILY_ROLES = {
+  girlfriend: {
+    patterns: [/女朋友/, /女友/, /西施/, /王昭君/, /貂蝉/, /杨玉环/, /施儿/, /昭儿/, /蝉儿/, /环儿/],
+  },
+  boyfriend: {
+    patterns: [/男朋友/, /男友/, /潘安/, /兰陵王/, /卫玠/, /宋玉/, /安生/, /陵生/, /玠生/, /玉生/],
+  },
+  daughter: {
+    patterns: [/女儿/, /闺女/, /赵灵儿/, /聂小倩/, /婴宁/, /花千骨/, /灵儿/, /倩儿/, /宁儿/, /花儿/],
+  },
+  son: {
+    patterns: [/儿子/, /哪吒/, /沉香/, /红孩儿/, /金蝉子/, /吒儿/, /香儿/, /圣儿/],
+  },
+};
+
+function detectFamilyRole(text) {
+  for (const [role, config] of Object.entries(FAMILY_ROLES)) {
+    if (config.patterns.some((p) => p.test(text))) {
+      return role;
+    }
+  }
+  return null;
+}
+
 const MODES = {
   awareness: {
     description: "Help the user recognize family-of-origin patterns, emotional triggers, and conditioned beliefs.",
@@ -89,6 +113,8 @@ const MODE_RULES = [
       /陪陪我/, /陪我说说话/, /抱抱/, /需要你/, /你在吗/,
       /温暖母亲/, /智慧父亲/, /理解姐姐/, /支持兄长/,
       /安慰/, /陪陪/, /好累/, /孤独/, /孤单/,
+      /女朋友/, /男友/, /女儿/, /儿子/, 
+      /西施/, /貂蝉/, /潘安/, /兰陵王/, /哪吒/, /沉香/,
     ],
   },
 ];
@@ -175,6 +201,8 @@ function routeInput(input) {
 
   const { primaryMode, secondaryModes } = selectPrimaryMode(scores);
 
+  const familyRole = detectFamilyRole(text);
+
   return {
     input: text,
     primaryMode,
@@ -183,6 +211,7 @@ function routeInput(input) {
     emotionalIntensity,
     userStage,
     detectedFamilyPatterns: familyPatterns,
+    familyRole,
     hasCrisisSignal: scores.crisis > 0,
     scores,
   };
@@ -226,5 +255,6 @@ module.exports = {
   MODES,
   MODE_RULES,
   FAMILY_PATTERNS,
+  FAMILY_ROLES,
   routeInput,
 };
