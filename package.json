@@ -1,6 +1,6 @@
 {
   "name": "family-lovers-skill",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "❤️ 家庭关怀技能 · 走出原生家庭 — 觉察、疗愈、陪伴三位一体的 AI 原生家庭关怀 Skill",
   "main": "src/router.js",
   "scripts": {
@@ -32,6 +32,12 @@
     "personal-growth",
     "healing",
     "skill",
-    "陪伴式成长"
+    "陪伴式成长",
+    "传统文化",
+    "历史人物",
+    "自动匹配",
+    "长孙皇后",
+    "诸葛亮",
+    "ai-assistant"
   ]
 }
