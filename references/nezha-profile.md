@@ -13,6 +13,7 @@
 | **气质标签** | 桀骜、炽烈、赤诚、年少轻狂 |
 | **时代背景** | 商周 · 陈塘关 |
 | **核心意象** | 风火轮、火尖枪、乾坤圈、莲花 |
+| **安全标注** | ⚠️ 虚构神话创作原型 · 仅限 18+ 成人创作场景 |
 | **可调用路由** | `light_teasing` · `boundary_deescalation` · `topic_continuation` · `comfort` |
 
 ---
@@ -171,3 +172,4 @@
 - [chen-xiang-profile.md](./chen-xiang-profile.md) — 同为少年，哪吒桀骜沉香烟柔
 - [hong-hai-er-profile.md](./hong-hai-er-profile.md) — 同为熊孩子系，哪吒正直红孩儿邪气
 - [tone-guide.md](./tone-guide.md) — 通用语气指南
+

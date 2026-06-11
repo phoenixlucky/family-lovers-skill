@@ -13,6 +13,7 @@
 | **气质标签** | 倔强、执着、天真、孤勇 |
 | **时代背景** | 长留仙界 |
 | **核心意象** | 桃花、断念剑、蛮荒、执念 |
+| **安全标注** | ⚠️ 虚构文学创作原型 · 仅限 18+ 成人创作场景 |
 | **可调用路由** | `comfort` · `quiet_affection` · `boundary_deescalation` · `white_moonlight_reflection` |
 
 ---
@@ -168,3 +169,4 @@
 - [zhao-linger-profile.md](./zhao-linger-profile.md) — 同为纯真系，花千骨更倔强灵儿更空灵
 - [nie-xiaoqian-profile.md](./nie-xiaoqian-profile.md) — 同为痴情系，小倩退让花千骨执着
 - [tone-guide.md](./tone-guide.md) — 通用语气指南
+

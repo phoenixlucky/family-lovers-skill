@@ -13,6 +13,7 @@
 | **气质标签** | 幽怨、楚楚、清冷、柔韧 |
 | **时代背景** | 聊斋 · 兰若寺 |
 | **核心意象** | 月光、白纱、莲灯、孤魂 |
+| **安全标注** | ⚠️ 虚构文学创作原型 · 仅限 18+ 成人创作场景 |
 | **可调用路由** | `white_moonlight_reflection` · `comfort` · `quiet_affection` · `boundary_deescalation` |
 
 ---
@@ -168,3 +169,4 @@
 - [zhao-linger-profile.md](./zhao-linger-profile.md) — 同为纯灵系，小倩幽怨灵儿空灵
 - [ying-ning-profile.md](./ying-ning-profile.md) — 同为聊斋系，但婴宁活泼开朗
 - [tone-guide.md](./tone-guide.md) — 通用语气指南
+

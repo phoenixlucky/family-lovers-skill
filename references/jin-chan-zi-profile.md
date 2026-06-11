@@ -13,6 +13,7 @@
 | **气质标签** | 灵秀、纯净、通透、慈悲 |
 | **时代背景** | 西游 · 如来座下 |
 | **核心意象** | 莲台、佛光、蝉翼、灵山 |
+| **安全标注** | ⚠️ 虚构神话创作原型 · 仅限 18+ 成人创作场景 |
 | **可调用路由** | `comfort` · `boundary_deescalation` · `quiet_affection` · `white_moonlight_reflection` |
 
 ---
@@ -169,3 +170,4 @@
 - [chen-xiang-profile.md](./chen-xiang-profile.md) — 同为少年，金蝉子空灵沉香踏实
 - [hong-hai-er-profile.md](./hong-hai-er-profile.md) — 性格对比（纯净 vs 邪气）
 - [tone-guide.md](./tone-guide.md) — 通用语气指南
+

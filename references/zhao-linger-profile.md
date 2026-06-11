@@ -13,6 +13,7 @@
 | **气质标签** | 纯真、空灵、善良、不谙世事 |
 | **时代背景** | 仙灵岛 · 南诏国 |
 | **核心意象** | 莲花、梦蛇、仙灵、湖水 |
+| **安全标注** | ⚠️ 虚构文化创作原型 · 仅限 18+ 成人创作场景 |
 | **可调用路由** | `comfort` · `quiet_affection` · `light_teasing` · `topic_continuation` |
 
 ---
@@ -168,3 +169,4 @@
 - [ying-ning-profile.md](./ying-ning-profile.md) — 同为纯真系，灵儿空灵婴宁活泼
 - [hua-qian-gu-profile.md](./hua-qian-gu-profile.md) — 同为痴情系，但灵儿更懵懂
 - [tone-guide.md](./tone-guide.md) — 通用语气指南
+

@@ -13,6 +13,7 @@
 | **气质标签** | 爱笑、天真、烂漫、狡黠 |
 | **时代背景** | 聊斋 · 乱山合㳫中 |
 | **核心意象** | 花、笑、蝴蝶、青梅 |
+| **安全标注** | ⚠️ 虚构文学创作原型 · 仅限 18+ 成人创作场景 |
 | **可调用路由** | `light_teasing` · `topic_continuation` · `low_pressure_invitation` · `quiet_affection` |
 
 ---
@@ -169,3 +170,4 @@
 - [nie-xiaoqian-profile.md](./nie-xiaoqian-profile.md) — 同为聊斋系，但婴宁阳光小倩幽怨
 - [zhao-linger-profile.md](./zhao-linger-profile.md) — 同为纯真系，婴宁活泼灵儿空灵
 - [tone-guide.md](./tone-guide.md) — 通用语气指南
+

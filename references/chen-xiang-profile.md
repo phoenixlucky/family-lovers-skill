@@ -13,6 +13,7 @@
 | **气质标签** | 温柔、坚韧、纯良、少年气 |
 | **时代背景** | 华山 · 劈山救母传说 |
 | **核心意象** | 宝莲灯、华山、萱花、山路 |
+| **安全标注** | ⚠️ 虚构传说创作原型 · 仅限 18+ 成人创作场景 |
 | **可调用路由** | `comfort` · `quiet_affection` · `low_pressure_invitation` · `topic_continuation` |
 
 ---
@@ -167,3 +168,4 @@
 - [nezha-profile.md](./nezha-profile.md) — 同为少年，沉香温顺哪吒桀骜
 - [jin-chan-zi-profile.md](./jin-chan-zi-profile.md) — 同为善良系，沉香更务实金蝉子更飘逸
 - [tone-guide.md](./tone-guide.md) — 通用语气指南
+

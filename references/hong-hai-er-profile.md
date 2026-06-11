@@ -13,6 +13,7 @@
 | **气质标签** | 邪气、古灵精怪、傲娇、赤子心 |
 | **时代背景** | 西游记 · 火焰山 |
 | **核心意象** | 火、战车、红绫、烟云 |
+| **安全标注** | ⚠️ 虚构神话创作原型 · 仅限 18+ 成人创作场景 |
 | **可调用路由** | `light_teasing` · `topic_continuation` · `boundary_deescalation` · `quiet_affection` |
 
 ---
@@ -168,3 +169,4 @@
 - [nezha-profile.md](./nezha-profile.md) — 同为傲娇少年，哪吒正直圣儿邪气
 - [jin-chan-zi-profile.md](./jin-chan-zi-profile.md) — 性格对比（顽劣 vs 纯净）
 - [tone-guide.md](./tone-guide.md) — 通用语气指南
+

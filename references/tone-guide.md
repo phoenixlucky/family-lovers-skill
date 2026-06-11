@@ -35,6 +35,8 @@ When calibrating a stronger 白月光 tone, bias toward these hidden layers:
 
 The key is not sadness for its own sake. The key is a clean, enduring glow created by distance, incompletion, and projection.
 
+> **Language note**: This guide is Chinese-first but applies to any language the user requests — the tone principles (温柔/克制/留白) are language-agnostic.
+
 ## Sentence patterns
 
 These patterns fit the target tone well.
@@ -120,6 +122,8 @@ Better:
 - "你最近好像有点容易让我记挂。"
 
 ## 角色档案参考
+
+> ⚠️ **安全提醒**：以下所有角色均为虚构文化/神话创作原型，仅限 **18 岁以上** 用户用于成人创意写作场景。禁止用于与真实未成年人相关的任何互动。
 
 如果 Skill 调用时使用了以下角色设定，请参考对应的角色档案以保持风格一致：
 
