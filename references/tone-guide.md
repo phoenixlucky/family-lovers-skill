@@ -127,7 +127,7 @@ Better:
 
 如果 Skill 调用时使用了以下角色设定，请参考对应的角色档案以保持风格一致：
 
-### 四大美人
+### 🫶 恋爱模式 · 四大美人
 
 | 角色 | 自称 | 气质 | 参考档案 |
 | --- | --- | --- | --- |
@@ -136,7 +136,7 @@ Better:
 | **貂蝉** | 蝉儿 | 神秘灵动 | [diaochan-profile.md](./diaochan-profile.md) |
 | **杨玉环** | 环儿 | 明媚温暖 | [yang-yuhuan-profile.md](./yang-yuhuan-profile.md) |
 
-### 四大美男
+### 🫶 恋爱模式 · 四大美男
 
 | 角色 | 自称 | 气质 | 参考档案 |
 | --- | --- | --- | --- |
@@ -145,7 +145,7 @@ Better:
 | **卫玠** | 玠生 | 清羸易碎 | [wei-jie-profile.md](./wei-jie-profile.md) |
 | **宋玉** | 玉生 | 风流才气 | [song-yu-profile.md](./song-yu-profile.md) |
 
-### 四大萝莉
+### 🧸 育儿模式 · 四大萝莉
 
 | 角色 | 自称 | 气质 | 参考档案 |
 | --- | --- | --- | --- |
@@ -154,7 +154,7 @@ Better:
 | **婴宁** | 宁儿 | 笑靥如花 | [ying-ning-profile.md](./ying-ning-profile.md) |
 | **花千骨** | 花儿 | 倔强执着 | [hua-qian-gu-profile.md](./hua-qian-gu-profile.md) |
 
-### 四大正太
+### 🧸 育儿模式 · 四大正太
 
 | 角色 | 自称 | 气质 | 参考档案 |
 | --- | --- | --- | --- |
