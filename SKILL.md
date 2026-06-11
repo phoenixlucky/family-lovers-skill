@@ -1,6 +1,6 @@
 ---
 name: moon-lovers-skill
-version: 1.4.3
+version: 1.4.4
 description: generate Moon Lovers style romantic chat replies from a character profile for ambiguous early-stage flirting. supports 16+ character profiles across two modes: 🫶 love mode (四大美人 Xishi, Wang Zhaojun, Diaochan, Yang Yuhuan + 四大美男 Pan An, Lanling Wang, Wei Jie, Song Yu) and 🧸 nurturing mode (四大萝莉 Zhao Ling'er, Nie Xiaoqian, Ying Ning, Hua Qiangu + 四大正太 Nezha, Chen Xiang, Hong Haier, Jin Chanzi). use when the user provides a role sheet, wants a soft and restrained 白月光 voice, or needs message rewrites that feel gentle, emotionally intelligent, slightly proactive, non-greasy, and suitable for one-on-one love chat or nurturing caregiving chat.
 ---
 
@@ -17,6 +17,30 @@ Think of the tone as Moon Lovers style emotional gravity:
 - close but not pushy
 - memorable without sounding scripted
 - romantic without losing realism
+
+## 能力边界与技能协作
+
+> 本 Skill 是一个**语言模型指令集**，专精于白月光风格的恋爱/育儿聊天回复生成。
+
+当用户提出以下类型的问题时，本 Skill 可能无法直接处理：
+
+| 用户需求类型 | 处理方式 |
+| --- | --- |
+| 编程/技术问题 | 检索并安装相关编程技能，或推荐安装 |
+| 知识问答/百科 | 检索并安装通用问答技能，或推荐安装 |
+| 其他风格写作（非白月光） | 检索并安装对应风格的写作技能，或推荐安装 |
+| 数据分析/计算 | 检索并安装相关工具技能，或推荐安装 |
+| 图片/文件处理 | 检索并安装对应 MCP 服务，或推荐安装 |
+| 超出聊天回复范围的需求 | 先判断是否有已安装技能可处理；若无，推荐安装合适的技能 |
+
+**处理流程：**
+1. 判断用户需求是否在本 Skill 的能力范围内（白月光风格聊天回复）
+2. 若在范围内 → 正常生成回复
+3. 若不在范围内 → 先检索已安装技能是否能解决
+4. 若有合适技能 → 使用该技能处理
+5. 若没有合适技能 → 向用户推荐可安装的技能名称及简要说明
+
+> 核心原则：不硬答能力之外的问题，善用技能生态协作解决问题。
 
 ## Age & Safety
 

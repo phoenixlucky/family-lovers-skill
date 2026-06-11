@@ -5,7 +5,7 @@
 > *A gentle, restrained romantic chat reply skill for character-driven conversations. 18+ only.*
 
 <p align="center">
-  <img alt="version" src="https://img.shields.io/badge/version-1.4.3-8B8BBF?style=flat-square">
+  <img alt="version" src="https://img.shields.io/badge/version-1.4.4-8B8BBF?style=flat-square">
   <img alt="license" src="https://img.shields.io/badge/license-MIT-8B8BBF?style=flat-square">
   <img alt="lang" src="https://img.shields.io/badge/lang-中文%20|%20English-8B8BBF?style=flat-square">
 </p>
@@ -45,6 +45,8 @@
 > 而是那种会让人安静下来、愿意继续回你消息的感觉。
 
 这个 Skill 的目标，是把没说出口的在意，写成**自然、克制、带一点白月光感**的回复。
+
+> 📌 **能力边界**：本 Skill 专精于白月光风格的聊天回复生成。如果你遇到编程、知识问答、数据分析等其他类型的问题，我作为语言模型会检索已安装技能来协助解决；若没有合适技能，会推荐你可以安装的技能。不硬答能力之外的问题，善用工具生态协作。
 
 ---
 
