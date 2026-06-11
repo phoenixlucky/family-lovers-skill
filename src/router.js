@@ -19,6 +19,25 @@ const FAMILY_ROLES = {
   },
 };
 
+// 核心安全型角色（用户显式调用时，不自动覆盖）
+const CORE_ROLES = {
+  warm_mother:   { patterns: [/温暖母亲/, /长孙皇后/, /贤后/, /慈母/] },
+  wise_father:   { patterns: [/智慧父亲/, /诸葛亮/, /智圣/, /父亲/] },
+  sister:        { patterns: [/理解姐姐/, /班昭/, /姐姐/] },
+  brother:       { patterns: [/支持兄长/, /刘伯温/, /兄长/, /哥哥/] },
+  grandpa:       { patterns: [/祖父/, /爷爷/, /姜子牙/, /姜太公/] },
+  grandma:       { patterns: [/祖母/, /奶奶/, /孟母/] },
+};
+
+function detectCoreRole(text) {
+  for (const [role, config] of Object.entries(CORE_ROLES)) {
+    if (config.patterns.some((p) => p.test(text))) {
+      return role;
+    }
+  }
+  return null;
+}
+
 function detectFamilyRole(text) {
   for (const [role, config] of Object.entries(FAMILY_ROLES)) {
     if (config.patterns.some((p) => p.test(text))) {
@@ -26,6 +45,266 @@ function detectFamilyRole(text) {
     }
   }
   return null;
+}
+
+// ============================================================
+// 自动匹配最合适的陪伴身份
+// 根据用户状态、模式、情绪强度和检测到的家庭模式，
+// 无需用户显式指定角色，自动选择最佳回应身份
+// ============================================================
+
+const AUTO_ROLES = {
+  // 核心4角色 + 历史人物变体
+  warm_mother: {
+    display: "温暖母亲",
+    variants: [
+      { name: "长孙皇后", desc: "以柔克刚，千古贤后", vibe: "温柔有力量，护持但不掌控" },
+      { name: "孟母",     desc: "慈爱教子，三迁择邻", vibe: "无条件信任，坚定地相信你" },
+      { name: "马皇后",   desc: "宽厚仁慈，护佑弱者", vibe: "包容一切情绪，给你安全港湾" },
+    ],
+  },
+  wise_father: {
+    display: "智慧父亲",
+    variants: [
+      { name: "诸葛亮",   desc: "运筹帷幄，千古智圣", vibe: "帮你理清方向，分析不出情绪" },
+      { name: "姜子牙",   desc: "德高望重，大器晚成", vibe: "阅历之谈，一句顶一万句" },
+    ],
+  },
+  understanding_sister: {
+    display: "理解姐姐",
+    variants: [
+      { name: "班昭",     desc: "知书达理，续写《汉书》", vibe: "细腻倾听，不评判只理解" },
+    ],
+  },
+  supporting_brother: {
+    display: "支持兄长",
+    variants: [
+      { name: "刘伯温",   desc: "青年才俊，一统功臣", vibe: "行动导向，陪你迈出第一步" },
+    ],
+  },
+  // 扩展角色 —— 适用于特定情绪场景
+  wise_grandpa: {
+    display: "睿智外公",
+    variants: [
+      { name: "鬼谷子",   desc: "洞悉人心，幕后高人", vibe: "看透关系本质，教你看清棋局" },
+    ],
+  },
+  warm_sister: {
+    display: "暖心小妹",
+    variants: [
+      { name: "马皇后",   desc: "宽厚仁慈，化解冲突", vibe: "用温暖融化你的委屈" },
+    ],
+  },
+};
+
+/**
+ * 根据用户状态自动选择最合适的角色 + 历史人物变体
+ */
+function autoSelectRole(result) {
+  const { primaryMode, emotionalIntensity, userStage, detectedFamilyPatterns } = result;
+
+  // 危机状态 —— 不启用角色，直接提供求助信息
+  if (primaryMode === "crisis") {
+    return null;
+  }
+
+  // 用户显式调用了核心角色（温暖母亲等）—— 尊重用户选择，不覆盖
+  if (result.coreRole) {
+    return null;
+  }
+
+  // 用户显式调用了扩展家庭成员角色（女友/男友/女儿/儿子）—— 尊重用户选择，不覆盖
+  if (result.familyRole) {
+    return null;
+  }
+
+  // ----- 基于模式 + 状态的匹配逻辑 -----
+
+  // 疗愈模式 —— 情绪需要先被接住
+  if (primaryMode === "healing") {
+    if (emotionalIntensity === "high") {
+      // 强烈情绪 → 最包容的怀抱
+      return {
+        role: "warm_mother",
+        variant: "马皇后",
+        reason: "高情绪强度下，需要无条件包容的怀抱",
+        autoActivate: true,
+      };
+    }
+    // 一般疗愈 → 细腻倾听
+    return {
+      role: "understanding_sister",
+      variant: "班昭",
+      reason: "需要被倾听和理解",
+      autoActivate: false,
+    };
+  }
+
+  // 觉察模式
+  if (primaryMode === "awareness") {
+    if (userStage === "confused_seeking") {
+      return {
+        role: "wise_father",
+        variant: "诸葛亮",
+        reason: "迷茫中需要方向感和分析框架",
+        autoActivate: false,
+      };
+    }
+    if (userStage === "insight_emerging") {
+      return {
+        role: "understanding_sister",
+        variant: "班昭",
+        reason: "刚有觉察，需要被温柔确认",
+        autoActivate: false,
+      };
+    }
+    if (userStage === "theory_before_feeling") {
+      return {
+        role: "wise_father",
+        variant: "姜子牙",
+        reason: "理论很多但缺少体感，需要阅历之谈来落地",
+        autoActivate: false,
+      };
+    }
+    // 默认觉察 → 父亲式分析
+    return {
+      role: "wise_father",
+      variant: "诸葛亮",
+      reason: "觉察阶段需要理性梳理",
+      autoActivate: false,
+    };
+  }
+
+  // 行动模式
+  if (primaryMode === "action") {
+    return {
+      role: "supporting_brother",
+      variant: "刘伯温",
+      reason: "需要行动力和突破的勇气",
+      autoActivate: false,
+    };
+  }
+
+  // 陪伴模式 —— 基于检测到的家庭模式深度匹配
+  if (primaryMode === "companionship") {
+    // 按 detectedFamilyPatterns 精细匹配
+    if (detectedFamilyPatterns.includes("emotional_neglect")) {
+      return {
+        role: "warm_mother",
+        variant: "长孙皇后",
+        reason: "被情感忽视过，需要温柔而坚定的看见",
+        autoActivate: true,
+      };
+    }
+    if (detectedFamilyPatterns.includes("conditional_love")) {
+      return {
+        role: "warm_mother",
+        variant: "孟母",
+        reason: "习惯了有条件才被爱，需要无条件的相信",
+        autoActivate: true,
+      };
+    }
+    if (detectedFamilyPatterns.includes("control_enmeshment")) {
+      return {
+        role: "wise_father",
+        variant: "诸葛亮",
+        reason: "被控制太久，需要有人帮理清边界和方向",
+        autoActivate: true,
+      };
+    }
+    if (detectedFamilyPatterns.includes("role_fixation") ||
+        detectedFamilyPatterns.includes("guilt_obligation")) {
+      return {
+        role: "supporting_brother",
+        variant: "刘伯温",
+        reason: "被固定角色或愧疚感困住，需要有人推一把",
+        autoActivate: true,
+      };
+    }
+    if (detectedFamilyPatterns.includes("abandonment_fear")) {
+      return {
+        role: "warm_mother",
+        variant: "长孙皇后",
+        reason: "害怕被抛弃，需要稳定的陪伴感",
+        autoActivate: true,
+      };
+    }
+    if (detectedFamilyPatterns.includes("role_reversal")) {
+      return {
+        role: "warm_mother",
+        variant: "孟母",
+        reason: "从小照顾别人，现在该被照顾了",
+        autoActivate: true,
+      };
+    }
+    if (detectedFamilyPatterns.includes("enmeshment_trauma") ||
+        detectedFamilyPatterns.includes("generational_trauma")) {
+      return {
+        role: "wise_father",
+        variant: "姜子牙",
+        reason: "纠缠太深，需要更高维度的智慧来看清",
+        autoActivate: true,
+      };
+    }
+
+    // 陪伴模式但没有检测到具体模式 → 看情绪强度
+    if (emotionalIntensity === "high") {
+      return {
+        role: "warm_mother",
+        variant: "马皇后",
+        reason: "情绪浓度高，先被接住最重要",
+        autoActivate: true,
+      };
+    }
+
+    // 默认陪伴 → 母亲式守护
+    return {
+      role: "warm_mother",
+      variant: "孟母",
+      reason: "安静陪伴，无条件的守护",
+      autoActivate: true,
+    };
+  }
+
+  // continuation 模式 —— 延续对话
+  if (primaryMode === "continuation") {
+    // 先检查是否有检测到的家庭模式需要回应
+    if (detectedFamilyPatterns.includes("emotional_neglect")) {
+      return { role: "warm_mother", variant: "长孙皇后", reason: "被忽视的感受需要被看见", autoActivate: true };
+    }
+    if (detectedFamilyPatterns.includes("conditional_love")) {
+      return { role: "warm_mother", variant: "孟母", reason: "有条件的爱背后是需要无条件的接纳", autoActivate: true };
+    }
+    if (detectedFamilyPatterns.includes("control_enmeshment") || detectedFamilyPatterns.includes("enmeshment_trauma")) {
+      return { role: "wise_father", variant: "诸葛亮", reason: "被卷入太深，需要清醒的梳理", autoActivate: true };
+    }
+    if (detectedFamilyPatterns.includes("guilt_obligation")) {
+      return { role: "supporting_brother", variant: "刘伯温", reason: "愧疚感需要行动来打破", autoActivate: false };
+    }
+    if (detectedFamilyPatterns.includes("abandonment_fear") || detectedFamilyPatterns.includes("role_reversal")) {
+      return { role: "warm_mother", variant: "长孙皇后", reason: "不安全感需要稳定陪伴来缓解", autoActivate: true };
+    }
+    if (detectedFamilyPatterns.includes("role_fixation")) {
+      return { role: "supporting_brother", variant: "刘伯温", reason: "被固定角色困住，需要有人鼓励突破", autoActivate: false };
+    }
+    if (detectedFamilyPatterns.includes("generational_trauma")) {
+      return { role: "wise_father", variant: "姜子牙", reason: "代际问题需要历史纵深来看清", autoActivate: false };
+    }
+
+    // 无具体模式 → 看情绪
+    if (emotionalIntensity === "high") {
+      return { role: "warm_mother", variant: "马皇后", reason: "对话中残留高情绪，需要稳稳接住", autoActivate: true };
+    }
+    return { role: "wise_father", variant: "姜子牙", reason: "日常延续，用阅历之谈自然推进", autoActivate: false };
+  }
+
+  // 兜底
+  return {
+    role: "wise_father",
+    variant: "姜子牙",
+    reason: "以不变应万变",
+    autoActivate: false,
+  };
 }
 
 const MODES = {
@@ -202,8 +481,10 @@ function routeInput(input) {
   const { primaryMode, secondaryModes } = selectPrimaryMode(scores);
 
   const familyRole = detectFamilyRole(text);
+  const coreRole = detectCoreRole(text);
 
-  return {
+  // 构建完整结果
+  const result = {
     input: text,
     primaryMode,
     secondaryModes,
@@ -212,9 +493,15 @@ function routeInput(input) {
     userStage,
     detectedFamilyPatterns: familyPatterns,
     familyRole,
+    coreRole,
     hasCrisisSignal: scores.crisis > 0,
     scores,
   };
+
+  // 自动匹配最合适的陪伴身份
+  result.autoRole = autoSelectRole(result);
+
+  return result;
 }
 
 function readCliInput() {
@@ -256,5 +543,10 @@ module.exports = {
   MODE_RULES,
   FAMILY_PATTERNS,
   FAMILY_ROLES,
+  CORE_ROLES,
+  AUTO_ROLES,
+  autoSelectRole,
+  detectCoreRole,
+  detectFamilyRole,
   routeInput,
 };
