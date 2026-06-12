@@ -99,6 +99,12 @@ const AUTO_ROLES = {
 
 /**
  * 根据用户状态自动选择最合适的角色 + 历史人物变体
+ *
+ * ⚠️ 重要限制：
+ * - 本匹配仅基于文本信号（关键词、句式），属于启发式判断，非诊断工具
+ * - 匹配可能不准确，调用方应允许用户否决或手动指定角色
+ * - 高情绪强度匹配（autoActivate=true）仅触发角色语气，不改变安全边界
+ * - 亲密角色（女友/男友/女儿/儿子）永远不会通过此函数自动匹配
  */
 function autoSelectRole(result) {
   const { primaryMode, emotionalIntensity, userStage, detectedFamilyPatterns } = result;
